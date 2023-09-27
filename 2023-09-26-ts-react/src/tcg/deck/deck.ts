@@ -4,9 +4,15 @@ interface DeckCard {
 
 export class Deck {
   readonly #cards: DeckCard[];
+  readonly #randomFn: (x: number) => number;
 
-  constructor(cards: DeckCard[]) {
+  constructor(
+    cards: DeckCard[],
+    randomFn: ((x: number) => number) | undefined = undefined
+  ) {
     this.#cards = cards;
+    this.#randomFn =
+      randomFn ?? ((x: number) => Math.floor(Math.random() * (x + 1)));
   }
 
   get length(): number {
@@ -19,6 +25,14 @@ export class Deck {
 
   draw(): DeckCard | undefined {
     return this.#cards.pop();
+  }
+
+  shuffle() {
+    // Knuth shuffling: https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm
+    for (let i = this.#cards.length - 1; i > 0; i--) {
+      const j = this.#randomFn(i);
+      [this.#cards[i], this.#cards[j]] = [this.#cards[j], this.#cards[i]];
+    }
   }
 }
 
