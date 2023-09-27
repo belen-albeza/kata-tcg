@@ -10,6 +10,9 @@ interface PlayerDeck {
 export interface GamePlayer {
   deck: PlayerDeck;
   draw: () => PlayerCard | undefined;
+  health: number;
+  manaSlots: number;
+  hand: PlayerCard[];
 }
 
 export class Game {

@@ -1,8 +1,26 @@
+import { useMemo } from "react";
+import { startGame } from "./tcg";
+
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
-import "./App.css";
+
+import Player from "./components/Player";
+import styles from "./App.module.css";
 
 function App() {
+  const game = useMemo(() => startGame(), []);
+  const players = game.players.map((p) => ({
+    ...p,
+    manaSlots: 1,
+    hand: p.hand.map((x) => ({
+      id: crypto.randomUUID(),
+      ...x,
+    })),
+  }));
+  // const hands = players.map((p) =>
+  //   p.hand.map((card) => ({ id: crypto.randomUUID(), ...card }))
+  // );
+
   return (
     <>
       <header>
@@ -16,7 +34,10 @@ function App() {
         </p>
         <h1>Card Battle</h1>
       </header>
-      <main>TODO</main>
+      <main>
+        <Player className={styles.player} name="Rival" state={players[1]} />
+        <Player className={styles.player} name="You" state={players[0]} />
+      </main>
       <footer>
         <p>
           Implementation of the{" "}
