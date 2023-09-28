@@ -10,6 +10,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  font-size: 1.2rem;
 }
 
 #root {
@@ -21,5 +22,7 @@ body {
   display: grid;
   grid-template-rows: auto 1fr auto;
   min-height: 100vh;
+
+  font-family: sans-serif;
 }
 

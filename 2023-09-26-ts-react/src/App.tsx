@@ -4,7 +4,7 @@ import { startGame } from "./tcg";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 
-import Player from "./components/Player";
+import Player from "./components/player";
 import styles from "./App.module.css";
 
 function App() {
@@ -34,7 +34,12 @@ function App() {
         <h1>Card Battle</h1>
       </header>
       <main>
-        <Player className={styles.player} name="Rival" state={players[1]} />
+        <Player
+          className={styles.player}
+          name="Rival"
+          state={players[1]}
+          shallHideCards
+        />
         <Player className={styles.player} name="You" state={players[0]} />
       </main>
       <footer>

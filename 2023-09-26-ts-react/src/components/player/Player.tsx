@@ -1,5 +1,6 @@
 import range from "lodash.range";
 
+import Card from "../card";
 import styles from "./Player.module.css";
 
 interface Card {
@@ -17,13 +18,15 @@ interface Props {
   name: string;
   state: PlayerState;
   className?: string;
+  shallHideCards?: boolean;
 }
 
-const Card = ({ mana }: { mana: number }) => {
-  return <article className={styles.card}>{mana} 🔵</article>;
-};
-
-const Player = ({ name, state, className = "" }: Props) => {
+const Player = ({
+  name,
+  state,
+  className = "",
+  shallHideCards = false,
+}: Props) => {
   const { health, manaSlots, hand } = state;
 
   return (
@@ -39,7 +42,7 @@ const Player = ({ name, state, className = "" }: Props) => {
       <ul className={styles.cardList}>
         {hand.map((x) => (
           <li key={x.id}>
-            <Card mana={x.mana} />
+            <Card mana={x.mana} face={shallHideCards ? "back" : "front"} />
           </li>
         ))}
       </ul>
