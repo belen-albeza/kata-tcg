@@ -10,9 +10,19 @@ interface PlayerDeck {
 export interface GamePlayer {
   deck: PlayerDeck;
   draw: () => PlayerCard | undefined;
-  health: number;
-  manaSlots: number;
-  hand: PlayerCard[];
+  summary: PlayerSummary;
+}
+
+interface PlayerSummary {
+  readonly hand: PlayerCard[];
+  readonly health: number;
+  readonly manaSlots: number;
+}
+
+interface GameSummary {
+  readonly currentPlayer: number;
+  readonly round: number;
+  readonly players: [PlayerSummary, PlayerSummary];
 }
 
 export class Game {
@@ -31,5 +41,13 @@ export class Game {
         p.draw();
       }
     }
+  }
+
+  get summary(): GameSummary {
+    return {
+      currentPlayer: 0,
+      round: 0,
+      players: [this.players[0].summary, this.players[1].summary],
+    };
   }
 }

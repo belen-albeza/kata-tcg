@@ -9,6 +9,7 @@ const anyDeck = () => ({
 const anyPlayer = () => ({
   deck: anyDeck(),
   draw: mock(() => undefined),
+  summary: { health: 1, hand: [], manaSlots: 0 },
 });
 
 describe("Game", () => {
@@ -22,5 +23,16 @@ describe("Game", () => {
       expect(player.deck.shuffle).toHaveBeenCalled();
       expect(player.draw).toHaveBeenCalledTimes(3);
     }
+  });
+
+  it("returns a summary with a snapshot of the game", () => {
+    const players: [GamePlayer, GamePlayer] = [anyPlayer(), anyPlayer()];
+    const g = new Game(players);
+
+    const summary = g.summary;
+
+    expect(summary.round).toBe(0); // TODO: map this to actual game value
+    expect(summary.currentPlayer).toBe(0); // TODO: map this to actual game value
+    expect(summary.players).toEqual([players[0].summary, players[1].summary]);
   });
 });

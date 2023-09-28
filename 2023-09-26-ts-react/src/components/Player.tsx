@@ -38,8 +38,8 @@ const Player = ({ name, state, className = "" }: Props) => {
       </p>
       <ul className={styles.cardList}>
         {hand.map((x) => (
-          <li>
-            <Card key={x.id} mana={x.mana} />
+          <li key={x.id}>
+            <Card mana={x.mana} />
           </li>
         ))}
       </ul>

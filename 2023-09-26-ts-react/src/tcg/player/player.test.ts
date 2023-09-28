@@ -23,6 +23,16 @@ describe("Player", () => {
     expect(p.deck).toEqual(deck);
   });
 
+  it("Returns a summary with the current snapshot", () => {
+    const p = new Player(anyDeck());
+
+    const { summary } = p;
+
+    expect(summary.health).toBe(p.health);
+    expect(summary.manaSlots).toBe(p.manaSlots);
+    expect(summary.hand).toEqual(p.hand);
+  });
+
   describe("Card draw", () => {
     it("draws a card and adds it to their hand", () => {
       const deck = anyDeck();

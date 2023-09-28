@@ -9,7 +9,9 @@ import styles from "./App.module.css";
 
 function App() {
   const game = useMemo(() => startGame(), []);
-  const players = game.players.map((p) => ({
+  const { summary } = game;
+
+  const players = summary.players.map((p) => ({
     ...p,
     manaSlots: 1,
     hand: p.hand.map((x) => ({
@@ -17,9 +19,6 @@ function App() {
       ...x,
     })),
   }));
-  // const hands = players.map((p) =>
-  //   p.hand.map((card) => ({ id: crypto.randomUUID(), ...card }))
-  // );
 
   return (
     <>

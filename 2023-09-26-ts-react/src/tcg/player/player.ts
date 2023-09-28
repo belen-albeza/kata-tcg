@@ -7,6 +7,12 @@ export interface CardDeck {
   shuffle: () => void;
 }
 
+interface Summary {
+  manaSlots: number;
+  health: number;
+  hand: Card[];
+}
+
 export class Player {
   health: number;
   manaSlots: number;
@@ -27,5 +33,15 @@ export class Player {
     }
 
     return card;
+  }
+
+  get summary(): Summary {
+    const { health, hand, manaSlots } = this;
+
+    return {
+      health,
+      manaSlots,
+      hand,
+    };
   }
 }
