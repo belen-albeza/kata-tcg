@@ -1,3 +1,11 @@
+.container {
+  /* text-align: center; */
+}
+
+.slots {
+  margin: 0 auto;
+}
+
 .cardList {
   list-style-type: none;
   margin-inline-start: 0;

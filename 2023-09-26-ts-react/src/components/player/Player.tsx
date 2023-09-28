@@ -1,7 +1,6 @@
-import range from "lodash.range";
-
 import Card from "../card";
 import styles from "./Player.module.css";
+import ManaSlots from "../mana-slots";
 
 interface Card {
   mana: number;
@@ -30,15 +29,10 @@ const Player = ({
   const { health, manaSlots, hand } = state;
 
   return (
-    <section className={className}>
+    <section className={`${className} ${styles.container}`}>
       <h2>{name}</h2>
       <p>Health: {health}</p>
-      <p>
-        Mana:{" "}
-        {range(10)
-          .map((x) => (x < manaSlots ? "🔵" : "⚪️"))
-          .join(" ")}
-      </p>
+      <ManaSlots slots={manaSlots} mana={manaSlots} className={styles.slots} />
       <ul className={styles.cardList}>
         {hand.map((x) => (
           <li key={x.id}>

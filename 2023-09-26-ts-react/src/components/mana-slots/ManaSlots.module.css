@@ -1,0 +1,31 @@
+.container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 1rem;
+  width: fit-content;
+  align-items: center;
+}
+
+.slots {
+  display: inline-flex;
+}
+
+.icon {
+  fill: var(--icon-fill);
+  color: var(--icon-stroke);
+}
+
+.iconMana {
+  --icon-fill: #2f58fc;
+  --icon-stroke: #2f58fc;
+}
+
+.iconSlot {
+  --icon-fill: #666;
+  --icon-stroke: #666;
+}
+
+.iconEmpty {
+  --icon-fill: #fff;
+  --icon-stroke: #ccc;
+}
